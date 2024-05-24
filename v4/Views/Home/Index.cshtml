@@ -1,0 +1,34 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Market Sayfası";
+}
+<div class="text-center text-black p-5">
+    <h1 class="display-4" style="font-weight: 700;">Ürün Satış Sistemine Hoşgeldiniz!</h1>
+    <br />
+</div>
+
+@Html.Raw(ViewData["Msg"])
+
+<form method="post">
+    <div>
+        @foreach (var product in Model)
+        {
+            <div style="display: inline-block; margin-right: 10px; vertical-align: top; width: 23%;">
+                <label for="@product.Name"><img src="@product.Image" class="img-thumbnail" alt="@product.Name" style="width: 300px; height: 300px; object-fit: cover;">@product.Name @product.Price TL (@product.Stock Adet)</label>
+                <input required class="form-check-input" type="radio" value="@product.Name" name="name" id="@product.Name" />
+                <br />
+            </div>
+        }
+    </div>
+    <br />
+    <div class="input-group mb-3" style="max-width: 300px;">
+        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Adet" name="quantity" required>
+        <span class="input-group-text">Adet</span>
+    </div>
+    <div class="input-group mb-3" style="max-width: 300px;">
+        <span class="input-group-text">TL</span>
+        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="00" name="paidPrice" required>
+        <span class="input-group-text">.00</span>
+    </div>
+    <button class ="btn btn-secondary">Satın Al</button>
+</form>
